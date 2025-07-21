@@ -8,4 +8,4 @@ Here are some ideas to get you started:
 - 🔭 I’m currently working on computing tech
 - 🌱 I’m currently learning how to use github
 - 📫 How to reach me: gmail
-- 😄 Pronouns: he
+- 😄 Pronouns: he/him
