@@ -1,0 +1,104 @@
+.rules-page body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    background: linear-gradient(135deg, #eaf1fb 0%, #f6f8fa 100%);
+    margin: 0;
+    padding: 0;
+    color: #222;
+    min-height: 100vh;
+}
+
+.rules-page .container {
+    max-width: 700px;
+    margin: 48px auto;
+    background: #fff;
+    border-radius: 18px;
+    box-shadow: 0 8px 32px rgba(45,108,223,0.13), 0 1.5px 8px rgba(0,0,0,0.04);
+    padding: 40px 32px;
+    transition: box-shadow 0.3s;
+    border: 1.5px solid #eaf1fb;
+}
+
+.rules-page .container:hover {
+    box-shadow: 0 12px 40px rgba(45,108,223,0.18), 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.rules-page h1 {
+    text-align: center;
+    color: #2d6cdf;
+    margin-bottom: 32px;
+    font-size: 2.6em;
+    letter-spacing: 1.5px;
+    font-weight: 700;
+    text-shadow: 0 2px 8px rgba(45,108,223,0.08);
+    background: linear-gradient(90deg, #2d6cdf 60%, #5ea3fa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.rules-page ul.rules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.rules-page ul.rules-list li {
+    background: linear-gradient(90deg, #eaf1fb 80%, #f6f8fa 100%);
+    margin-bottom: 20px;
+    padding: 22px 28px;
+    border-radius: 12px;
+    font-size: 1.18em;
+    box-shadow: 0 2px 12px rgba(45,108,223,0.09);
+    display: flex;
+    align-items: center;
+    border-left: 5px solid #2d6cdf;
+    transition: transform 0.15s, box-shadow 0.15s;
+    position: relative;
+    overflow: hidden;
+}
+
+.rules-page ul.rules-list li:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 24px rgba(45,108,223,0.13);
+    background: linear-gradient(90deg, #dbe9fa 80%, #eaf1fb 100%);
+}
+
+.rules-page ul.rules-list li::before {
+    content: "✔";
+    color: #fff;
+    background: linear-gradient(135deg, #2d6cdf 60%, #5ea3fa 100%);
+    font-weight: bold;
+    margin-right: 16px;
+    font-size: 1.3em;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(45,108,223,0.10);
+    flex-shrink: 0;
+}
+
+@media (max-width: 600px) {
+    .rules-page .container {
+        padding: 18px 6px;
+        border-radius: 10px;
+    }
+    .rules-page h1 {
+        font-size: 1.5em;
+        margin-bottom: 18px;
+    }
+    .rules-page ul.rules-list li {
+        font-size: 1em;
+        padding: 13px 8px;
+        border-radius: 7px;
+        margin-bottom: 12px;
+    }
+    .rules-page ul.rules-list li::before {
+        width: 24px;
+        height: 24px;
+        font-size: 1em;
+        margin-right: 10px;
+    }
+}

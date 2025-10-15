@@ -1,0 +1,18 @@
+-- database: ./data_source.db
+
+SELECT * FROM `table-name`;
+
+--SELECT * FROM `table-name`
+--WHERE city = 'Toulon'
+
+--SELECT * FROM `table-name`
+--WHERE country = 'United States';
+
+--SELECT * FROM `table-name`
+--WHERE membership_status = 'active';
+
+--SELECT * FROM `table-name`
+--WHERE email LIKE '%.com';
+
+--SELECT * FROM `table-name`
+--WHERE first_name LIKE 'A%';

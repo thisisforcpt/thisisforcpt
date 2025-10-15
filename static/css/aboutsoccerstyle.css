@@ -1,0 +1,44 @@
+.about-soccer-page .about-title {
+    font-size: 2.5em;
+    color: #2e8b57;
+    margin-bottom: 16px;
+    text-align: center;
+}
+
+.about-soccer-page .about-description {
+    font-size: 1.2em;
+    line-height: 1.7;
+    margin-bottom: 24px;
+    color: #444;
+}
+
+.about-soccer-page .soccer-image {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto 24px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(44, 62, 80, 0.12);
+}
+
+.about-soccer-page .facts-list {
+    background: #f4f8fb;
+    border-left: 4px solid #2e8b57;
+    padding: 16px 24px;
+    margin-bottom: 24px;
+    border-radius: 6px;
+}
+
+.about-soccer-page .facts-list li {
+    margin-bottom: 10px;
+    font-size: 1.05em;
+}
+
+@media (max-width: 600px) {
+    .about-soccer-page main {
+        padding: 16px;
+    }
+    .about-soccer-page .about-title {
+        font-size: 1.6em;
+    }
+}

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <title>HAJCOIN WEBSITE</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='CSS/mainstyle.css') }}">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(135deg, #f9d423 0%, #ff4e50 100%);
+            margin: 0;
+            color: #222;
+            display: flex;
+        }
+        .side-value {
+            position: fixed;
+            top: 120px;
+            left: 0;
+            background: #fffbe6;
+            border-radius: 0 18px 18px 0;
+            box-shadow: 2px 4px 16px rgba(0,0,0,0.10);
+            padding: 28px 38px;
+            min-width: 220px;
+            z-index: 100;
+        }
+        .side-value h3 {
+            margin: 0 0 12px 0;
+            color: #ff4e50;
+            font-size: 1.3em;
+            text-align: center;
+        }
+        .side-value .value {
+            font-size: 2.1em;
+            font-weight: bold;
+            color: #222;
+            text-align: center;
+        }
+        header {
+            background: #222;
+            color: #fff;
+            padding: 30px 0 10px 0;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            letter-spacing: 2px;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+        nav ul li {
+            display: inline;
+        }
+        nav ul li a, .site-btn {
+            background: #ff4e50;
+            color: #fff;
+            padding: 12px 28px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background 0.2s, transform 0.2s;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: none;
+            cursor: pointer;
+        }
+        nav ul li a:hover, .site-btn:hover {
+            background: #f9d423;
+            color: #222;
+            transform: scale(1.08);
+        }
+        .toc {
+            background: #fffbe6;
+            margin: 30px auto;
+            padding: 20px 40px;
+            border-radius: 18px;
+            max-width: 600px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+        }
+        main {
+            max-width: 1100px;
+            margin: 40px auto;
+            background: #fff;
+            border-radius: 18px;
+            box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+            padding: 40px;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        section h2 {
+            color: #ff4e50;
+            font-size: 2em;
+            margin-bottom: 12px;
+        }
+        .img-row {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .img-row img {
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+            width: 220px;
+            height: 140px;
+            object-fit: cover;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            background: #fffbe6;
+            border-radius: 12px;
+            overflow: hidden;
+        }
+        th, td {
+            padding: 14px;
+            text-align: center;
+            border-bottom: 1px solid #f9d423;
+        }
+        th {
+            background: #ff4e50;
+            color: #fff;
+            font-size: 1.1em;
+        }
+        tr:last-child td {
+            border-bottom: none;
+        }
+        .site-btn-group {
+            display: flex;
+            gap: 18px;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 18px 0;
+            margin-top: 40px;
+            border-radius: 0 0 18px 18px;
+        }
+        /* Fixed bottom contact/donation panel */
+        .bottom-fixed-panel {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            background: #fffbe6;
+            box-shadow: 0 -2px 12px rgba(0,0,0,0.10);
+            border-radius: 18px 18px 0 0;
+            z-index: 200;
+            padding: 32px 0 16px 0;
+        }
+        .bottom-fixed-content {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 0 16px;
+        }
+        @media (max-width: 700px) {
+            .side-value {
+                top: 70px;
+                padding: 18px 12px;
+                min-width: 140px;
+            }
+            .bottom-fixed-content {
+                max-width: 98vw;
+                padding: 0 4vw;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="side-value">
+        <h3>HAJCOIN Value</h3>
+        <div class="value" id="hajcoin-value"></div>
+    </div>
+    <div style="flex:1;">
+    <header>
+        <h1>Welcome to HAJMEDIA</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About HAJCOIN</a></li>
+                <li><a href="#rules">About US</a></li>
+                <li><a href="#teams">BUY HAJCOIN</a></li>
+            </ul>
+        </nav>
+        <div class="site-btn-group">
+            <button class="site-btn" onclick="window.location.href='aboutsoccer.html'">Learn More</button>
+            <button class="site-btn" onclick="window.location.href='rules.html'">Our Team</button>
+            <button class="site-btn" onclick="window.location.href='contact.html'">Contact Us</button>
+        </div>
+    </header>
+
+    <div class="toc">
+        <h2>Table of Contents</h2>
+        <ul>
+            <li><a href="#about">About HAJCOIN</a></li>
+            <li><a href="#rules">About US</a></li>
+            <li><a href="#teams">BUY HAJCOIN</a></li>
+            <li><a href="#features">Features</a></li>
+            <li><a href="#roadmap">Roadmap</a></li>
+        </ul>
+    </div>
+
+    <main>
+        <section id="about">
+            <h2>About HAJCOIN</h2>
+            <div class="img-row">
+                <img src="{{ url_for('static', filename='images/coin1.jpg') }}" alt="HAJCOIN Logo">
+                <img src="{{ url_for('static', filename='images/coin2.jpg') }}" alt="HAJCOIN Future">
+            </div>
+            <p>HAJCOIN IS THE FUTURE of digital currency. Fast, secure, and community-driven. <a href="aboutsoccer.html">Learn more</a></p>
+            <table>
+                <tr>
+                    <th>Feature</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Speed</td>
+                    <td>Instant transactions worldwide</td>
+                </tr>
+                <tr>
+                    <td>Security</td>
+                    <td>Advanced blockchain technology</td>
+                </tr>
+                <tr>
+                    <td>Community</td>
+                    <td>Driven by passionate users</td>
+                </tr>
+            </table>
+        </section>
+
+        <section id="rules">
+            <h2>About US</h2>
+            <div class="img-row">
+                <img src="{{ url_for('static', filename='images/team.jpg') }}" alt="HAJMEDIA Team">
+            </div>
+            <ul>
+                <li>HajMedia is Great</li>
+                <li>Innovative and energetic team</li>
+                <li>Committed to excellence</li>
+            </ul>
+            <p>We believe in making digital currency accessible and exciting for everyone. Our team is dedicated to building the future of finance.</p>
+        </section>
+
+        <section id="teams">
+            <h2>BUY HAJCOIN</h2>
+            <div class="img-row">
+                <img src="{{ url_for('static', filename='images/buy.jpg') }}" alt="Buy HAJCOIN">
+            </div>
+            <ul>
+                <li>BUY 1 coin for 20c</li>
+                <li>Special offers for new users</li>
+            </ul>
+            <table>
+                <tr>
+                    <th>Package</th>
+                    <th>Coins</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Starter</td>
+                    <td>10</td>
+                    <td>$2.00</td>
+                </tr>
+                <tr>
+                    <td>Pro</td>
+                    <td>100</td>
+                    <td>$18.00</td>
+                </tr>
+                <tr>
+                    <td>VIP</td>
+                    <td>1000</td>
+                    <td>$150.00</td>
+                </tr>
+            </table>
+            <button class="site-btn" onclick="window.location.href='buy.html'">Buy Now</button>
+        </section>
+
+        <section id="features">
+            <h2>Features</h2>
+            <ul>
+                <li>Mobile Wallet Support</li>
+                <li>Global Partnerships</li>
+                <li>24/7 Customer Service</li>
+            </ul>
+        </section>
+
+        <section id="roadmap">
+            <h2>Roadmap</h2>
+            <table>
+                <tr>
+                    <th>Quarter</th>
+                    <th>Milestone</th>
+                </tr>
+                <tr>
+                    <td>Q1 2025</td>
+                    <td>Launch HAJCOIN Wallet</td>
+                </tr>
+                <tr>
+                    <td>Q2 2025</td>
+                    <td>Expand to 10 countries</td>
+                </tr>
+                <tr>
+                    <td>Q3 2025</td>
+                    <td>Introduce staking rewards</td>
+                </tr>
+            </table>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 HAJMEDIA | All rights reserved.</p>
+    </footer>
+   
+    <!-- Small graph and value box script -->
+    <script>
+        // Adjust side-value box size via JS for demonstration (CSS preferred for production)
+        document.addEventListener('DOMContentLoaded', function() {
+            var sideValue = document.querySelector('.side-value');
+            sideValue.style.minWidth = '90px';
+            sideValue.style.height = '160px';
+            sideValue.style.display = 'flex';
+            sideValue.style.flexDirection = 'column';
+            sideValue.style.justifyContent = 'center';
+            sideValue.style.alignItems = 'center';
+
+            // Set random value
+            function getRandomValue(min, max) {
+                return (Math.random() * (max - min) + min).toFixed(2);
+            }
+            var value = getRandomValue(0.20, 10000);
+            document.getElementById('hajcoin-value').textContent = '$' + value;
+
+            // Add larger graph
+            var graphCanvas = document.createElement('canvas');
+            graphCanvas.width = 160;
+            graphCanvas.height = 60;
+            graphCanvas.style.marginTop = '10px';
+            sideValue.appendChild(graphCanvas);
+
+            // Draw up/down graph with axes
+            var ctx = graphCanvas.getContext('2d');
+            ctx.clearRect(0, 0, graphCanvas.width, graphCanvas.height);
+
+            // Axes
+            ctx.strokeStyle = '#222';
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.moveTo(25, 10); // Y axis
+            ctx.lineTo(25, 50);
+            ctx.lineTo(155, 50); // X axis
+            ctx.stroke();
+
+            // Up and down line
+            ctx.strokeStyle = '#ff4e50';
+            ctx.lineWidth = 2;
+            ctx.beginPath();
+            ctx.moveTo(25, 45);
+            ctx.lineTo(45, 20);
+            ctx.lineTo(65, 35);
+            ctx.lineTo(85, 15);
+            ctx.lineTo(105, 40);
+            ctx.lineTo(125, 18);
+            ctx.lineTo(145, 30);
+            ctx.stroke();
+
+            // Donation amount logic (unchanged)
+            document.getElementById('donation-amount').addEventListener('change', function() {
+                var customBox = document.getElementById('custom-amount');
+                customBox.style.display = this.value === 'custom' ? 'block' : 'none';
+            });
+        });
+    </script>
+        });
+    </script>
+    </body>
+    </html>

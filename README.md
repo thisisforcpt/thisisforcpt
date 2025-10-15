@@ -1,5 +1,4 @@
-
-
+# About my first project on GitHub
 
 So far the idea is to make a social media site in which users can invest in posts, the better the posts preform, the more they earn, if a post performs badly they lose money. 
 
