@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>About Us - HAJMEDIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef0f4;
+    }
+
+    header {
+      background: #202437;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      padding: 15px;
+      width: 250px;
+      z-index: 1000;
+    }
+
+    .dropdown form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown input, .dropdown button {
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .dropdown button {
+      background-color: #202437;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #202437;
+    }
+
+    .anthem {
+      margin-top: 40px;
+    }
+
+    audio {
+      margin-top: 10px;
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">HAJMEDIA</div>
+  <nav>
+    <a href="main.html">Home</a>
+    <a href="rules.html">Our Team</a>
+    <a href="friends.html">Friends</a>
+    <a href="buyhajcoin.html">Hajcoin</a>
+    <a href="contactus.html">Contact Us</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <div class="profile" onclick="toggleDropdown(event)">
+    <img src="/Users/rajjoshi/test/School/my-first-project/Flask_PWA_Programming_For_The_Web_Task_Template/static/icons/logo.png" alt="Profile">
+    <div class="dropdown" id="profileDropdown" onclick="event.stopPropagation();">
+      <strong>Login to HAJMEDIA</strong>
+      <form onsubmit="login(event)">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <h1>About HAJMEDIA</h1>
+  <p><strong>HAJMEDIA</strong> was founded with a simple yet powerful idea: to give everyone a voice. What started as a small media project among friends has now grown into a digital hub where creativity meets community. Our mission is to inspire, inform, and empower through storytelling, technology, and innovation.</p>
+
+  <p>Since our inception in 2023, we have consistently pushed the boundaries of what a media company can be. From user-generated content to real-time engagement tools, we believe that the future of media is collaborative and inclusive. HAJMEDIA is not just a platform — it's a movement.</p>
+
+  <p>We are proud to have built a space that celebrates diverse perspectives and promotes meaningful connections. Our team is passionate, driven, and committed to building a better online world, one post at a time.</p>
+
+  <div class="anthem">
+    <h2>🎵 HAJMEDIA Anthem</h2>
+    <p>Hajcoin made a little splash,
+Little splash, little splash,
+Hajcoin made a little splash,
+Its value soared so high.
+Everywhere that traders went,
+Traders went, traders went,
+Everywhere that traders went,
+Hajcoin caught their eye.
+It made the markets buzz and cheer,
+Buzz and cheer, buzz and cheer,
+It made the markets buzz and cheer,
+Its growth was no surprise.
+Now everyone’s investing in,
+Investing in, investing in,
+Now everyone’s investing in,
+The crypto of the skies!
+</p>
+  
+  </div>
+</div>
+
+<script>
+  function toggleDropdown(e) {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    e.stopPropagation();
+  }
+
+  function login(e) {
+    e.preventDefault();
+    alert("Logged in successfully!");
+    document.getElementById('profileDropdown').style.display = 'none';
+  }
+
+  window.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('profileDropdown');
+    if (!e.target.closest('.profile')) {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>
+
+</body>
+</html>

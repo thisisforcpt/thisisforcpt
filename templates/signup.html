@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Sign Up - HAJMEDIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef0f4;
+    }
+
+    header {
+      background: #202437;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      flex: 1;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+    }
+
+    .profile img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid white;
+      margin-left: 15px;
+    }
+
+    .form-container {
+      max-width: 500px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 5px;
+      font-weight: 500;
+    }
+
+    form input, form select {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+
+    form button {
+      width: 100%;
+      padding: 12px;
+      background: #202437;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    form button:hover {
+      background: #353c5c;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">HAJMEDIA</div>
+  <nav>
+    <a href="main.html">Home</a>
+    <a href="aboutsoccer.html">About Us</a>
+    <a href="rules.html">Our Team</a>
+    <a href="friends.html" class="site-btn">Friends</a>
+    <a href="buyhajcoin.html">Hajcoin</a>
+    <a href="contactus.html">Contact Us</a>
+  </nav>
+  <div class="profile">
+    <span>Profile</span>
+    <img src="static/icons/logo.png" alt="Profile">
+  </div>
+</header>
+
+<div class="form-container">
+  <h2>Sign Up</h2>
+  <form id="signupForm">
+  <label for="email">Email</label>
+  <input type="email" id="email" name="email" required>
+
+  <label for="username">Username</label>
+  <input type="text" id="username" name="username" required>
+
+  <label for="password">Password</label>
+  <input type="password" id="password" name="password" required>
+
+  <label for="gender">Gender</label>
+  <select id="gender" name="gender">
+    <option value="Male">Male</option>
+    <option value="Female">Female</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <label for="birthdate">Birthdate</label>
+  <input type="date" id="birthdate" name="birthdate" required>
+
+  <button type="button" onclick="window.location.href='main.html'">Create Account</button>
+</form>
+

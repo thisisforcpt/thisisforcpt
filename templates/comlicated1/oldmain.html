@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>HAJMEDIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef0f4;
+    }
+
+    header {
+      background: #202437;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      padding: 15px;
+      width: 250px;
+      z-index: 1000;
+    }
+
+    .dropdown form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown input {
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .dropdown button {
+      padding: 8px;
+      border: none;
+      background-color: #202437;
+      color: white;
+      cursor: pointer;
+      border-radius: 5px;
+      margin-top: 8px;
+    }
+
+    .container {
+      max-width: 700px;
+      margin: 30px auto;
+      padding: 0 15px;
+    }
+
+    .post {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin-bottom: 25px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+
+    .post h3 {
+      margin-bottom: 10px;
+    }
+
+    .post img, .post video {
+      width: 100%;
+      border-radius: 10px;
+      margin-top: 10px;
+    }
+
+    .buttons {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .buttons .like-btn {
+      color: #777;
+      font-size: 18px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .buttons .like-btn.liked {
+      color: red;
+    }
+
+    .buttons .share-btn {
+      background-color: #202437;
+      color: white;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .comment-section {
+      margin-top: 12px;
+    }
+
+    .comment-section input {
+      width: 75%;
+      padding: 8px;
+      margin-right: 5px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+
+    .comment-section button {
+      padding: 8px 10px;
+      border: none;
+      background: #202437;
+      color: white;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">HAJMEDIA</div>
+  <nav>
+    <a href="aboutsoccer.html" class="site-btn">About Us</a>
+    <a href="rules.html" class="site-btn">Our Team</a>
+    <a href="friends.html" class="site-btn">Friends</a>
+  </nav>
+  <div class="profile" onclick="toggleDropdown(event)">
+    <img src="/Users/rajjoshi/test/School/my-first-project/Flask_PWA_Programming_For_The_Web_Task_Template/static/icons/logo.png" alt="Profile">
+    <div class="dropdown" id="profileDropdown" onclick="event.stopPropagation();">
+      <strong>Login to HAJMEDIA</strong>
+      <form onsubmit="login(event)">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+
+  <!-- Post 1: Video -->
+  <div class="post">
+    <h3>THIS GUY MADE RICE</h3>
+    <video controls>
+      <source src="/Users/rajjoshi/test/School/my-first-project/Flask_PWA_Programming_For_The_Web_Task_Template/static/icons/2882115-uhd_3840_2160_24fps.mp4" type="video/mp4">
+    </video>
+    <div class="buttons">
+      <button class="like-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i><span class="like-count">0</span></button>
+      <button class="share-btn" onclick="alert('Share not available')">Share</button>
+    </div>
+    <div class="comment-section">
+      <input type="text" placeholder="Add a comment...">
+      <button onclick="comment(this)">Post</button>
+    </div>
+  </div>
+
+  <!-- Post 2: Image -->
+  <div class="post">
+    <h3>📸 Sunset at the Beach</h3>
+    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e" alt="Sunset">
+    <div class="buttons">
+      <button class="like-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i><span class="like-count">0</span></button>
+      <button class="share-btn">Share</button>
+    </div>
+    <div class="comment-section">
+      <input type="text" placeholder="Add a comment...">
+      <button onclick="comment(this)">Post</button>
+    </div>
+  </div>
+
+  <!-- Post 3: Text -->
+  <div class="post">
+    <h3>📝 Thought of the Day</h3>
+    <p>a</p>
+    <div class="buttons">
+      <button class="like-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i><span class="like-count">0</span></button>
+      <button class="share-btn">Share</button>
+    </div>
+    <div class="comment-section">
+      <input type="text" placeholder="Add a comment...">
+      <button onclick="comment(this)">Post</button>
+    </div>
+  </div>
+
+  <!-- Post 4: Food -->
+  <div class="post">
+    <h3>🍲 Lunch Time</h3>
+    <img src="https://images.unsplash.com/photo-1600891963935-c856b536b5d4" alt="Food">
+    <div class="buttons">
+      <button class="like-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i><span class="like-count">0</span></button>
+      <button class="share-btn">Share</button>
+    </div>
+    <div class="comment-section">
+      <input type="text" placeholder="Add a comment...">
+      <button onclick="comment(this)">Post</button>
+    </div>
+  </div>
+
+  <!-- Post 5: Nature -->
+  <div class="post">
+    <h3>🌲 Peaceful Forest</h3>
+    <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470" alt="Forest">
+    <div class="buttons">
+      <button class="like-btn" onclick="toggleLike(this)"><i class="far fa-heart"></i><span class="like-count">0</span></button>
+      <button class="share-btn">Share</button>
+    </div>
+    <div class="comment-section">
+      <input type="text" placeholder="Add a comment...">
+      <button onclick="comment(this)">Post</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  function toggleDropdown(e) {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    e.stopPropagation();
+  }
+
+  function login(e) {
+    e.preventDefault();
+    alert("Logged in successfully!");
+    document.getElementById('profileDropdown').style.display = 'none';
+  }
+
+  function toggleLike(btn) {
+    const icon = btn.querySelector('i');
+    const countSpan = btn.querySelector('.like-count');
+    let count = parseInt(countSpan.textContent);
+
+    if (btn.classList.contains('liked')) {
+      icon.classList.remove('fas');
+      icon.classList.add('far');
+      btn.classList.remove('liked');
+      countSpan.textContent = count - 1;
+    } else {
+      icon.classList.remove('far');
+      icon.classList.add('fas');
+      btn.classList.add('liked');
+      countSpan.textContent = count + 1;
+    }
+  }
+
+  function comment(btn) {
+    let input = btn.previousElementSibling;
+    if (input.value.trim()) {
+      alert("You commented: " + input.value);
+      input.value = '';
+    } else {
+      alert("Please type something!");
+    }
+  }
+
+  // Close dropdown when clicking outside
+  window.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('profileDropdown');
+    if (!e.target.closest('.profile')) {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>
+
+<div id="hajcoin-widget">
+  <h4>HAJCOIN VALUE</h4>
+  <div id="hajcoin-value">$100.00</div>
+  <div id="hajcoin-update">5 SECOND UPDATE: +0.00%</div>
+</div>
+
+<style>
+  #hajcoin-widget {
+    position: fixed;
+    top: 90px;
+    left: 20px;
+    background: #ffffff;
+    border: 2px solid #202437;
+    border-radius: 10px;
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.15);
+    z-index: 9999;
+    text-align: center;
+    font-family: 'Segoe UI', sans-serif;
+    width: 180px;
+  }
+
+  #hajcoin-widget h4 {
+    margin: 0 0 8px;
+    font-size: 16px;
+    color: #202437;
+  }
+
+  #hajcoin-value {
+    font-size: 20px;
+    font-weight: bold;
+    color: #27ae60;
+    margin-bottom: 6px;
+  }
+
+  #hajcoin-update {
+    font-size: 14px;
+    color: #555;
+  }
+</style>
+
+<script>
+  let hajcoinValue = parseFloat((Math.random() * (10000 - 0.2) + 0.2).toFixed(2));
+
+  function updateHajcoin() {
+    // Generate random % between -10% and +10%
+    const percentChange = parseFloat((Math.random() * 20 - 10).toFixed(2)); // -10 to +10
+    const changeFactor = 1 + (percentChange / 100);
+
+    hajcoinValue = hajcoinValue * changeFactor;
+
+    // Clamp the value between 0.20 and 10,000
+    hajcoinValue = Math.min(Math.max(hajcoinValue, 0.20), 10000);
+
+    // Update DOM
+    document.getElementById("hajcoin-value").textContent = "$" + hajcoinValue.toFixed(2);
+    document.getElementById("hajcoin-update").textContent = "5 SECOND UPDATE: " + (percentChange > 0 ? "+" : "") + percentChange + "%";
+  }
+
+  // Run every 5 seconds
+  setInterval(updateHajcoin, 5000);
+
+  // Initial value
+  updateHajcoin();
+</script>
+
+</body>
+</html>

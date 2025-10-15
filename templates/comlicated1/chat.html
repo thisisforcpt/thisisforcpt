@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HajCoin Social — About Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #121937;
+      --muted: #93a1bd;
+      --text: #f6f7fb;
+      --brand: #7c3aed; /* purple */
+      --brand-2: #06b6d4; /* cyan */
+      --brand-3: #f59e0b; /* amber */
+      --brand-4: #ef4444; /* red */
+      --success: #22c55e;
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: Poppins, Montserrat, Arial, Helvetica, sans-serif;
+      color: var(--text);
+      background: radial-gradient(1200px 700px at 10% 10%, rgba(124,58,237,.25), transparent 60%),
+                  radial-gradient(1200px 700px at 90% 20%, rgba(6,182,212,.22), transparent 60%),
+                  radial-gradient(1200px 700px at 50% 90%, rgba(245,158,11,.20), transparent 60%),
+                  var(--bg);
+      background-attachment: fixed;
+    }
+    a { color: inherit; text-decoration: none; }
+    .container { width: min(1200px, 92%); margin: 0 auto; }
+
+    /* Header */
+    header {
+      position: sticky; top: 0; z-index: 50;
+      background: rgba(11, 15, 26, 0.6);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: .5px; }
+    .logo {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: conic-gradient(from 180deg, var(--brand), var(--brand-2), var(--brand-3), var(--brand));
+      box-shadow: 0 6px 18px rgba(124,58,237,.45);
+    }
+    .menu { display: flex; gap: 18px; font-weight: 600; }
+    .menu a { opacity: .9; }
+    .menu a:hover { opacity: 1; text-shadow: 0 0 12px rgba(6,182,212,.6); }
+
+    /* Buttons */
+    .btn {
+      display: inline-flex; align-items: center; gap: 10px; justify-content: center;
+      padding: 12px 18px; border-radius: 14px; font-weight: 700; border: 2px solid transparent;
+      box-shadow: 0 10px 24px rgba(0,0,0,.28), inset 0 0 0 1px rgba(255,255,255,.05);
+      transition: transform .14s ease, box-shadow .14s ease, filter .14s ease;
+      cursor: pointer; user-select: none;
+    }
+    .btn:hover { transform: translateY(-2px); filter: brightness(1.05); }
+    .btn:active { transform: translateY(0); }
+    .btn-buy { background: linear-gradient(135deg, var(--brand), var(--brand-2)); }
+    .btn-donate { background: linear-gradient(135deg, var(--brand-3), var(--brand-4)); }
+    .btn-ghost { background: transparent; border-color: rgba(255,255,255,.18); color: var(--text); }
+
+    /* Hero */
+    .hero { padding: 64px 0 18px; }
+    .hero-inner { display: grid; grid-template-columns: 1.25fr 1fr; gap: 28px; align-items: center; }
+    .eyebrow { color: var(--brand-2); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; font-size: .85rem; }
+    h1 { margin: 10px 0 8px; font-size: clamp(2rem, 4.8vw, 3.4rem); line-height: 1.05; }
+    .lead { font-size: 1.05rem; color: var(--muted); }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 18px; display: grid; gap: 16px;
+    }
+    .stat {
+      display: grid; grid-template-columns: auto 1fr auto; gap: 12px; align-items: center;
+      background: rgba(12,18,40,.7); padding: 14px; border-radius: 14px; border: 1px solid rgba(255,255,255,.08);
+    }
+    .ticker { font-family: Montserrat, system-ui, sans-serif; font-weight: 800; letter-spacing: .5px; }
+    .price { font-size: 1.65rem; font-weight: 800; color: #c7f9cc; text-shadow: 0 0 18px rgba(34,197,94,.4); }
+    .tag { font-size: .8rem; background: rgba(124,58,237,.22); color: #e9d5ff; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(124,58,237,.4); }
+
+    /* Sections */
+    section { padding: 48px 0; }
+    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 18px; position: relative; overflow: hidden;
+    }
+    .card::after {
+      content: ""; position: absolute; inset: -60% -40% auto auto; height: 220px; width: 220px; border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(6,182,212,.35), transparent 70%);
+      transform: rotate(25deg);
+    }
+    .card h3 { margin: 4px 0 6px; }
+    .card p { color: var(--muted); }
+
+    /* Donate section */
+    .donate {
+      display: grid; grid-template-columns: 1.2fr 1fr; gap: 18px; align-items: stretch;
+    }
+    .donate .panda {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 18px; padding: 18px; display: grid; place-items: center;
+    }
+    .panda-emoji { font-size: 96px; filter: drop-shadow(0 10px 24px rgba(255,255,255,.08)); }
+    .donate .panel { display: grid; gap: 14px; }
+    .donate .row { display: flex; gap: 12px; flex-wrap: wrap; }
+    .input {
+      background: rgba(255,255,255,.06); border: 1px solid rgba(255,255,255,.16);
+      padding: 12px 14px; border-radius: 12px; color: var(--text); font-weight: 700;
+      outline: none; min-width: 140px; flex: 1 1 180px;
+    }
+
+    /* Footer */
+    footer { padding: 28px 0 48px; color: var(--muted); }
+    .foot { display: flex; flex-wrap: wrap; gap: 14px; justify-content: space-between; align-items: center; }
+
+    /* Badges */
+    .badge { font-size: .78rem; padding: 6px 10px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); opacity:.9 }
+    .b1 { background: rgba(124,58,237,.18); }
+    .b2 { background: rgba(6,182,212,.18); }
+    .b3 { background: rgba(245,158,11,.18); }
+
+    /* Responsive */
+    @media (max-width: 920px) {
+      .hero-inner { grid-template-columns: 1fr; }
+      .grid { grid-template-columns: 1fr; }
+      .donate { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo" aria-hidden="true"></div>
+        <span>HajCoin Social</span>
+      </div>
+      <nav class="menu">
+        <a href="#about">About</a>
+        <a href="#value">HajCoin Value</a>
+        <a href="#features">Features</a>
+        <a href="#donate">Donate to Pandas</a>
+      </nav>
+      <button class="btn btn-ghost" id="refreshPriceBtn" aria-label="Refresh HajCoin value">↻ Refresh</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="about">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">About us</div>
+          <h1>We’re the social network where your likes are 💜 and your tips are <span style="color:#c7f9cc">crypto</span>.</h1>
+          <p class="lead">HajCoin Social is a fun, community‑powered platform where creators and friends connect, share, and support each other using <strong>HajCoin (HJC)</strong> — our playful token with real utility across tipping, premium groups, and merch. No cursive fonts. Maximum vibes.</p>
+          <div class="row" style="display:flex; gap:12px; flex-wrap:wrap; margin-top:16px">
+            <a class="btn btn-buy" href="#buy" id="buyBtn">💸 Buy HajCoin</a>
+            <a class="btn btn-donate" href="#donate" id="donateBtn">🐼 Donate to Pandas</a>
+          </div>
+          <div style="display:flex; gap:10px; margin-top:14px; flex-wrap:wrap">
+            <span class="badge b1">No ads in premium spaces</span>
+            <span class="badge b2">Tip in seconds</span>
+            <span class="badge b3">Creator‑first economics</span>
+          </div>
+        </div>
+
+        <div class="hero-card" id="value">
+          <div class="stat">
+            <span class="ticker">HJC</span>
+            <div style="color:var(--muted); font-size:.95rem">Current HajCoin value</div>
+            <span class="tag">Live-ish</span>
+          </div>
+          <div class="stat">
+            <div style="font-weight:700">USD</div>
+            <div><span id="price" class="price">$0.00</span></div>
+            <button class="btn btn-ghost" id="reRoll">🎲 Re‑roll</button>
+          </div>
+          <p class="lead" style="margin:0">For demo fun, this page <em>randomly</em> shows a value between <strong>$0.20</strong> and <strong>$10,000.00</strong> (two decimal places). Refresh or re‑roll to see it change.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="features">
+      <h2 style="margin:0 0 14px">What makes us different</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>✨ Social that pays</h3>
+          <p>HajCoin tips, boosts, and bounties make engagement feel rewarding. Support your fav creators directly, no middle‑person skimming all the fun.</p>
+        </article>
+        <article class="card">
+          <h3>🛍️ Creator shops</h3>
+          <p>Unlock premium groups, early drops, and collectibles. Use HJC at checkout and stack bonus XP for profile flair.</p>
+        </article>
+        <article class="card">
+          <h3>🔐 Smart & safe</h3>
+          <p>Non‑custodial wallets supported. Two‑step confirmations for sends. Fun vibes, serious security.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container donate" id="donate">
+      <div class="panda">
+        <div class="panda-emoji" role="img" aria-label="panda">🐼</div>
+        <p class="lead" style="text-align:center; max-width:40ch">Love pandas? We do too. Direct a slice of your HajCoin to trusted wildlife partners. Transparent wallets, real impact.</p>
+      </div>
+      <div class="panel">
+        <h2>Donate to Pandas</h2>
+        <div class="row">
+          <input class="input" id="donationAmount" type="number" min="1" step="1" value="25" aria-label="Donation amount in HajCoin" />
+          <button class="btn btn-donate" id="donateNow">🐼 Donate HJC</button>
+          <button class="btn btn-ghost" id="toggleMore">Details</button>
+        </div>
+        <div class="card" id="donationMore" style="display:none">
+          <h3 style="margin-top:0">Where your HJC goes</h3>
+          <ul>
+            <li>Habitat restoration & anti‑poaching programs</li>
+            <li>Research & panda care in accredited sanctuaries</li>
+            <li>Public education & biodiversity awareness</li>
+          </ul>
+          <p style="margin:0">Public wallet (demo): <code>hjc_panda_cause_0xA11CEB0B</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="buy">
+      <div class="card" style="display:grid; gap:12px">
+        <h2 style="margin:0">Buy HajCoin</h2>
+        <p class="lead" style="margin:0">Get HJC in minutes. Choose your path:</p>
+        <div class="row">
+          <button class="btn btn-buy" id="buyWithCard">💳 Buy with Card</button>
+          <button class="btn btn-buy" id="buyWithCrypto">🔁 Swap from Crypto</button>
+          <button class="btn btn-ghost" id="copyAddress">📋 Copy Deposit Address</button>
+        </div>
+        <p id="copiedMsg" style="display:none; color:#c7f9cc; font-weight:700">Deposit address copied!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> HajCoin Social — Built by community dreamers ✨</div>
+      <div style="display:flex; gap:10px; flex-wrap:wrap">
+        <span class="badge">Terms</span>
+        <span class="badge">Privacy</span>
+        <span class="badge">Status</span>
+      </div>
+    </div>
+  </footer>
+
+  <canvas id="confetti" style="position:fixed; inset:0; pointer-events:none; z-index:9999"></canvas>
+
+  <script>
+    // Random price between 0.20 and 10000.00 (2 decimals)
+    const priceEl = document.getElementById('price');
+    const refreshBtn = document.getElementById('refreshPriceBtn');
+    const reRollBtn = document.getElementById('reRoll');
+
+    function randomPrice(min=0.20, max=10000.00) {
+      // Ensure two decimals and practical inclusivity of max
+      const value = Math.random() * (max - min) + min;
+      const rounded = Math.round(value * 100) / 100;
+      // Tiny nudge: occasionally snap exactly to max
+      if (Math.random() < 0.001) return max.toFixed(2);
+      return rounded.toFixed(2);
+    }
+    function setPrice() {
+      priceEl.textContent = `$${randomPrice()}`;
+    }
+
+    // Donate UI
+    const donateToggle = document.getElementById('toggleMore');
+    const donateMore = document.getElementById('donationMore');
+    donateToggle.addEventListener('click', () => {
+      const open = donateMore.style.display !== 'none';
+      donateMore.style.display = open ? 'none' : 'block';
+      donateToggle.textContent = open ? 'Details' : 'Hide details';
+    });
+
+    // Copy address
+    const copyBtn = document.getElementById('copyAddress');
+    const copiedMsg = document.getElementById('copiedMsg');
+    copyBtn.addEventListener('click', async () => {
+      const addr = 'hjc_deposit_0xB00PB34R42';
+      try {
+        await navigator.clipboard.writeText(addr);
+        copiedMsg.style.display = 'block';
+        burstConfetti();
+        setTimeout(()=>copiedMsg.style.display='none', 2000);
+      } catch (e) {
+        alert('Copy failed. Address: ' + addr);
+      }
+    });
+
+    // Buy / Donate demo actions
+    document.getElementById('buyBtn').addEventListener('click', burstConfetti);
+    document.getElementById('donateBtn').addEventListener('click', burstConfetti);
+    document.getElementById('buyWithCard').addEventListener('click', ()=>{ alert('Demo: Redirecting to card checkout…'); burstConfetti(); });
+    document.getElementById('buyWithCrypto').addEventListener('click', ()=>{ alert('Demo: Opening swap widget…'); burstConfetti(); });
+    document.getElementById('donateNow').addEventListener('click', ()=>{
+      const amt = Number(document.getElementById('donationAmount').value || 0);
+      if (amt > 0) {
+        alert(`Demo: Donated ${amt} HJC to Pandas!`);
+        burstConfetti();
+      } else {
+        alert('Enter a valid amount');
+      }
+    });
+
+    refreshBtn.addEventListener('click', setPrice);
+    reRollBtn.addEventListener('click', setPrice);
+
+    // Footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Initialize
+    setPrice();
+
+    // ✨ Confetti (tiny canvas burst)
+    const canvas = document.getElementById('confetti');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+
+    function resize() { canvas.width = innerWidth; canvas.height = innerHeight; }
+    addEventListener('resize', resize); resize();
+
+    function burstConfetti(x = innerWidth/2, y = innerHeight/3) {
+      const colors = ['#7c3aed','#06b6d4','#f59e0b','#ef4444','#22c55e','#e5e7eb'];
+      for (let i=0;i<120;i++) {
+        particles.push({
+          x, y,
+          vx: (Math.random()-0.5)*8,
+          vy: (Math.random()-1.2)*8,
+          life: 60+Math.random()*30,
+          size: 2+Math.random()*4,
+          color: colors[(Math.random()*colors.length)|0],
+          rot: Math.random()*Math.PI,
+          vr: (Math.random()-0.5)*0.2
+        });
+      }
+      if (!animating) animate();
+    }
+
+    let animating = false;
+    function animate() {
+      animating = true;
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      particles.forEach(p=>{
+        p.vy += 0.12; // gravity
+        p.x += p.vx; p.y += p.vy; p.rot += p.vr; p.life -= 1;
+      });
+      particles = particles.filter(p=>p.life>0 && p.y < canvas.height+20);
+      particles.forEach(p=>{
+        ctx.save();
+        ctx.translate(p.x, p.y); ctx.rotate(p.rot);
+        ctx.fillStyle = p.color;
+        ctx.fillRect(-p.size/2, -p.size/2, p.size, p.size);
+        ctx.restore();
+      });
+      if (particles.length) requestAnimationFrame(animate); else animating = false;
+    }
+
+    // Click burst
+    addEventListener('click', (e)=>{
+      if (e.target.closest('.btn')) return; // buttons already burst
+      burstConfetti(e.clientX, e.clientY);
+    });
+  </script>
+</body>
+</html>

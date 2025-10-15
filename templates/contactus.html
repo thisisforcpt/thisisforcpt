@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Contact Us - HAJMEDIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef0f4;
+      color: #202437;
+    }
+
+    header {
+      background: #202437;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 999;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .profile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .profile img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .container {
+      max-width: 600px;
+      margin: 60px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      margin-top: 0;
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-top: 15px;
+      font-weight: bold;
+    }
+
+    input,
+    textarea {
+      padding: 10px;
+      margin-top: 5px;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 12px;
+      background: #202437;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background: #3a3e58;
+    }
+
+    .success {
+      display: none;
+      margin-top: 20px;
+      color: green;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">HAJMEDIA</div>
+    <nav>
+      <a href="main.html">Home</a>
+      <a href="aboutsoccer.html">About Us</a>
+      <a href="rules.html">Our Team</a>
+      <a href="friends.html">Friends</a>
+      <a href="buyhajcoin.html">Hajcoin</a>
+      <a href="signup.html">Sign Up</a>
+    </nav>
+    <div class="profile">
+      <span>Profile</span>
+      <img src="static/icons/logo.png" alt="Profile" />
+    </div>
+  </header>
+
+  <div class="container">
+    <h2>Contact Us</h2>
+    <form onsubmit="submitForm(event)">
+      <label for="name">Name</label>
+      <input type="text" id="name" required />
+
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
+
+      <label for="message">Message</label>
+      <textarea id="message" rows="6" required></textarea>
+
+      <button type="submit">Send Message</button>
+      <div class="success" id="success">Thanks! We'll get back to you soon.</div>
+    </form>
+  </div>
+
+  <script>
+    function submitForm(e) {
+      e.preventDefault();
+      document.getElementById('success').style.display = 'block';
+      e.target.reset();
+    }
+  </script>
+</body>
+</html>

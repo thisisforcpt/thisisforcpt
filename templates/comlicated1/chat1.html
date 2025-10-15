@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>HAJMEDIA — About Us</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0a0a; --panel:#141414; --ink:#fafafa; --muted:#b9b9b9;
+      --c1:#ff3b3b; --c2:#2dd4bf; --c3:#ffdd1a; --c4:#7c5cff; --c5:#ff7ab6;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0;font-family:Poppins,Montserrat,Arial,Helvetica,sans-serif;color:var(--ink);background:var(--bg)}
+    a{color:inherit;text-decoration:none}
+    .container{width:min(1200px,92%);margin:0 auto}
+
+    /* Header */
+    header{position:sticky;top:0;z-index:50;background:#0e0e0e;border-bottom:3px solid #222}
+    .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:800;letter-spacing:.5px}
+    .logo{width:44px;height:44px;border-radius:10px;overflow:hidden;display:grid;place-items:center;background:#1a1a1a;border:2px dashed var(--c3)}
+    .logo img{width:100%;height:100%;object-fit:cover;display:block}
+    .menu{display:flex;gap:12px;align-items:center}
+    .menu a,.menu button{font-weight:800;font-size:.95rem;padding:10px 12px;border-radius:10px;border:2px solid #222;background:#111;color:var(--ink)}
+    .menu a:hover,.menu button:hover{filter:brightness(1.05)}
+    .menu .disabled{opacity:.6;cursor:not-allowed;pointer-events:none;border-style:dotted}
+
+    /* Buttons */
+    .btn{display:inline-flex;align-items:center;gap:10px;justify-content:center;padding:12px 18px;border-radius:12px;font-weight:800;border:3px solid #222;background:#121212;color:var(--ink);box-shadow:6px 6px 0 #000;cursor:pointer;user-select:none;transition:filter .12s}
+    .btn:hover{filter:brightness(1.06)}
+    .btn-buy{background:var(--c2);color:#062b27;border-color:#0f9e8d;box-shadow:6px 6px 0 #064e44}
+    .btn-donate{background:var(--c1);color:#2b0404;border-color:#7a1c1c;box-shadow:6px 6px 0 #3c0c0c}
+    .btn-ghost{background:#111;color:var(--ink)}
+
+    /* Hero */
+    .hero{padding:50px 0 18px}
+    .hero-inner{display:grid;grid-template-columns:1.25fr 1fr;gap:28px;align-items:center}
+    .eyebrow{color:#111;background:var(--c3);border:2px solid #000;padding:4px 8px;border-radius:8px;font-weight:900;letter-spacing:1px;text-transform:uppercase;font-size:.8rem}
+    h1{margin:10px 0 8px;font-size:clamp(2rem,4.8vw,3.2rem);line-height:1.08}
+    .lead{font-size:1.05rem;color:var(--muted)}
+    .hero-card{background:#121212;border:3px solid #222;border-radius:16px;padding:18px;display:grid;gap:16px;position:relative}
+
+    .stat{display:flex;gap:12px;align-items:center;justify-content:space-between;background:#101010;padding:14px;border-radius:12px;border:2px dashed #2b2b2b}
+    .ticker{font-family:Montserrat,system-ui,sans-serif;font-weight:900;letter-spacing:.5px}
+    .price{font-size:1.65rem;font-weight:900;color:#c7f9cc}
+
+    /* Sections */
+    section{padding:40px 0}
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#121212;border:3px solid #222;border-radius:16px;padding:18px;position:relative;overflow:hidden}
+    .card h3{margin:4px 0 6px}
+    .card p{color:var(--muted)}
+
+    /* Donate section */
+    .donate{display:grid;grid-template-columns:1.2fr 1fr;gap:18px;align-items:stretch}
+    .donate .animal{background:#121212;border:3px solid #222;border-radius:16px;padding:18px;display:grid;place-items:center}
+    .animal-emoji{font-size:96px}
+    .donate .panel{display:grid;gap:14px}
+    .donate .row{display:flex;gap:12px;flex-wrap:wrap}
+    .input{background:#111;border:2px solid #333;padding:12px 14px;border-radius:12px;color:var(--ink);font-weight:700;outline:none;min-width:140px;flex:1 1 180px}
+
+    /* Banner */
+    .impact-banner{background:#111;border:3px dashed var(--c3);border-radius:12px;padding:14px 16px;margin:8px 0 24px;font-weight:900;color:var(--ink)}
+
+    /* Footer */
+    footer{padding:28px 0 48px;color:var(--muted)}
+    .foot{display:flex;flex-wrap:wrap;gap:14px;justify-content:space-between;align-items:center}
+    .badge{font-size:.78rem;padding:6px 10px;border-radius:999px;border:2px solid #333;background:#111}
+    .b1{color:var(--c1)} .b2{color:var(--c2)} .b3{color:var(--c3)}
+
+    /* Modal (Login) */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,.6);display:none;z-index:1000}
+    .modal{position:fixed;inset:0;display:none;place-items:center;z-index:1001}
+    .modal.open,.modal-backdrop.open{display:grid}
+    .modal-card{width:min(520px,92%);background:#121212;border:3px solid #222;border-radius:18px;padding:22px;position:relative;box-shadow:12px 12px 0 #000}
+    .close-x{position:absolute;right:12px;top:10px;background:transparent;border:none;color:var(--ink);font-size:22px;cursor:pointer}
+    .modal h3{margin-top:4px}
+    .field{display:grid;gap:6px;margin:10px 0}
+    .field label{font-size:.9rem;color:var(--muted)}
+    .field input{padding:12px 14px;border-radius:12px;border:2px solid #333;background:#111;color:var(--ink);font-weight:700}
+
+    /* Chart */
+    .chart-wrap{background:#121212;border:3px solid #222;border-radius:16px;padding:12px}
+    #priceChart{width:100%;height:200px;display:block}
+
+    @media (max-width:920px){
+      .hero-inner{grid-template-columns:1fr}
+      .grid{grid-template-columns:1fr}
+      .donate{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <!-- Replace logo.png with your own logo -->
+        <div class="logo"><img src="logo.png" alt="HAJMEDIA logo (replace logo.png)"></div>
+        <span>HAJMEDIA</span>
+      </div>
+      <nav class="menu">
+        <a href="#" class="disabled" title="Coming soon">About</a>
+        <a href="#" class="disabled" title="Coming soon">Rules</a>
+        <a href="#value">HajCoin Value</a>
+        <a href="#koalas" id="navDonate">Donate</a>
+        <a href="#buy" id="navBuy">Buy HJC</a>
+        <button class="btn btn-ghost" id="loginOpen" type="button">Log in</button>
+        <button class="btn btn-ghost" id="refreshPriceBtn" aria-label="Refresh HajCoin value" type="button">↻</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="about">
+      <div class="hero-inner">
+        <div>
+          <div class="eyebrow">About us</div>
+          <h1>We’re the social network where your likes are 💜 and your tips are <span style="color:#c7f9cc">crypto</span>.</h1>
+          <p class="lead">HAJMEDIA is a fun, community-powered platform where creators and friends connect, share, and support each other using <strong>HajCoin (HJC)</strong> — our playful token with real utility across tipping, premium groups, and merch.</p>
+          <div class="row" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px">
+            <a class="btn btn-buy" href="#buy" id="buyBtn" role="button">💸 Buy HajCoin</a>
+            <a class="btn btn-donate" href="#koalas" id="donateBtn" role="button">🐨 Donate to Koalas</a>
+          </div>
+          <div style="display:flex;gap:10px;margin-top:14px;flex-wrap:wrap">
+            <span class="badge b1">No ads in premium spaces</span>
+            <span class="badge b2">Tip in seconds</span>
+            <span class="badge b3">Creator-first economics</span>
+          </div>
+        </div>
+
+        <div class="hero-card" id="value">
+          <div class="stat">
+            <span class="ticker">HJC</span>
+            <div style="color:var(--muted);font-size:.95rem">Current HajCoin value</div>
+          </div>
+          <div class="stat">
+            <div style="font-weight:700">AUD</div>
+            <div><span id="price" class="price">$0.00</span></div>
+            <a class="btn btn-buy" href="#buy" id="valueBuy">Buy HJC</a>
+          </div>
+          <div class="chart-wrap">
+            <canvas id="priceChart" aria-label="HajCoin price chart"></canvas>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="container">
+      <div class="impact-banner">A portion of every HajCoin purchase helps protect koalas and their habitats. 💚🐨</div>
+    </section>
+
+    <section class="container" id="features">
+      <h2 style="margin:0 0 14px">What makes us different</h2>
+      <div class="grid">
+        <article class="card">
+          <h3>✨ Social that pays</h3>
+          <p>HajCoin tips, boosts, and bounties make engagement feel rewarding. Support your fav creators directly.</p>
+        </article>
+        <article class="card">
+          <h3>🛍️ Creator shops</h3>
+          <p>Unlock premium groups, early drops, and collectibles. Use HJC at checkout and stack bonus XP.</p>
+        </article>
+        <article class="card">
+          <h3>🔐 Smart & safe</h3>
+          <p>Non-custodial wallets supported. Two-step confirmations for sends. Fun vibes, solid security.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="container donate" id="koalas">
+      <div class="animal">
+        <div class="animal-emoji" role="img" aria-label="koala">🐨</div>
+        <p class="lead" style="text-align:center;max-width:40ch">Love koalas? We do too. Direct a slice of your HajCoin to trusted wildlife partners. Transparent wallets, real impact.</p>
+      </div>
+      <div class="panel">
+        <h2>Donate to Koalas</h2>
+        <div class="row">
+          <input class="input" id="donationAmount" type="number" min="1" step="1" value="25" aria-label="Donation amount in HajCoin" />
+          <button class="btn btn-donate" id="donateNow" type="button">🐨 Donate HJC</button>
+          <button class="btn btn-ghost" id="toggleMore" type="button">Details</button>
+        </div>
+        <div class="card" id="donationMore" style="display:none">
+          <h3 style="margin-top:0">Where your HJC goes</h3>
+          <ul>
+            <li>Habitat restoration & rescue programmes</li>
+            <li>Research & koala care in accredited sanctuaries</li>
+            <li>Public education & biodiversity awareness</li>
+          </ul>
+          <p style="margin:0">Public wallet (demo): <code>hjc_koala_cause_0xA11CEB0B</code></p>
+        </div>
+      </div>
+    </section>
+
+    <section class="container" id="buy">
+      <div class="card" style="display:grid;gap:12px">
+        <h2 style="margin:0">Buy HajCoin</h2>
+        <p class="lead" style="margin:0">Choose a payment method:</p>
+        <div class="row" style="display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn btn-buy" data-pay="PayPal" type="button">🅿️ PayPal</button>
+          <button class="btn btn-buy" data-pay="Afterpay" type="button">⏩ Afterpay</button>
+          <button class="btn btn-buy" data-pay="Card" type="button">💳 Card</button>
+          <button class="btn btn-buy" data-pay="Mastercard" type="button">Ⓜ️ Mastercard</button>
+          <button class="btn btn-buy" data-pay="Visa" type="button">✅ Visa</button>
+          <button class="btn btn-buy" data-pay="Apple Pay" type="button"> Apple&nbsp;Pay</button>
+          <button class="btn btn-buy" data-pay="GPay" type="button">GPay</button>
+          <button class="btn btn-ghost" id="copyAddress" type="button">📋 Copy Deposit Address</button>
+        </div>
+        <p id="copiedMsg" style="display:none;color:#c7f9cc;font-weight:700">Deposit address copied!</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container foot">
+      <div>© <span id="year"></span> HAJMEDIA — Built by community dreamers ✨</div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <span class="badge">Terms</span>
+        <span class="badge">Privacy</span>
+        <span class="badge">Status</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Login Modal -->
+  <div class="modal-backdrop" id="loginBackdrop"></div>
+  <div class="modal" id="loginModal" role="dialog" aria-modal="true" aria-labelledby="loginTitle">
+    <div class="modal-card">
+      <button class="close-x" id="loginClose" aria-label="Close" type="button">×</button>
+      <h3 id="loginTitle">Log in to HAJMEDIA</h3>
+      <form id="loginForm">
+        <div class="field">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" required />
+        </div>
+        <div class="field">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="••••••••" required />
+        </div>
+        <button class="btn btn-buy" type="submit">Log in</button>
+      </form>
+      <div id="loginState" style="display:none;font-weight:800;color:#c7f9cc;margin-top:8px">LOGGED IN</div>
+    </div>
+  </div>
+
+  <script>
+    // Random price between 0.20 and 10000.00 (2 decimals)
+    const priceEl = document.getElementById('price');
+    const refreshBtn = document.getElementById('refreshPriceBtn');
+    function randomPrice(min=0.20, max=10000.00){
+      const value = Math.random() * (max - min) + min;
+      const rounded = Math.round(value * 100) / 100;
+      if(Math.random() < 0.001) return max.toFixed(2);
+      return rounded.toFixed(2);
+    }
+    function setPrice(){ priceEl.textContent = `$${randomPrice()}`; drawChart(); }
+
+    // Smooth scroll helpers for top and hero buttons
+    function smoothTo(id){ const el=document.querySelector(id); if(!el) return; el.scrollIntoView({behavior:'smooth'}); }
+    document.getElementById('navBuy')?.addEventListener('click', e=>{ e.preventDefault(); smoothTo('#buy'); });
+    document.getElementById('navDonate')?.addEventListener('click', e=>{ e.preventDefault(); smoothTo('#koalas'); });
+    document.getElementById('buyBtn')?.addEventListener('click', e=>{ e.preventDefault(); smoothTo('#buy'); });
+    document.getElementById('donateBtn')?.addEventListener('click', e=>{ e.preventDefault(); smoothTo('#koalas'); });
+
+    // Copy address
+    const copyBtn = document.getElementById('copyAddress');
+    const copiedMsg = document.getElementById('copiedMsg');
+    copyBtn?.addEventListener('click', async ()=>{
+      const addr='hjc_deposit_0xB00P-K0ALA-42';
+      try{ await navigator.clipboard.writeText(addr); copiedMsg.style.display='block'; setTimeout(()=>copiedMsg.style.display='none',2000); }
+      catch(e){ alert('Copy failed. Address: '+addr); }
+    });
+
+    // Donate UI
+    const donateToggle=document.getElementById('toggleMore');
+    const donateMore=document.getElementById('donationMore');
+    donateToggle?.addEventListener('click',()=>{
+      const open = donateMore.style.display!=='none';
+      donateMore.style.display = open ? 'none':'block';
+      donateToggle.textContent = open ? 'Details':'Hide details';
+    });
+    document.getElementById('donateNow')?.addEventListener('click',()=>{
+      const amt=Number(document.getElementById('donationAmount').value||0);
+      if(amt>0) alert(`Demo: Donated ${amt} HJC to Koalas!`); else alert('Enter a valid amount');
+    });
+
+    // Payment demo handlers
+    document.querySelectorAll('[data-pay]').forEach(b=>{
+      b.addEventListener('click', ()=> alert('Demo: Starting '+b.dataset.pay+' checkout…'));
+    });
+
+    // Footer year & price init
+    document.getElementById('year').textContent = new Date().getFullYear();
+    refreshBtn?.addEventListener('click', setPrice);
+    setPrice();
+
+    // Login modal
+    const loginOpen=document.getElementById('loginOpen');
+    const loginModal=document.getElementById('loginModal');
+    const loginBackdrop=document.getElementById('loginBackdrop');
+    const loginClose=document.getElementById('loginClose');
+    const loginForm=document.getElementById('loginForm');
+    const loginState=document.getElementById('loginState');
+
+    function openLogin(){ loginModal.classList.add('open'); loginBackdrop.classList.add('open'); }
+    function closeLogin(){ loginModal.classList.remove('open'); loginBackdrop.classList.remove('open'); }
+    loginOpen?.addEventListener('click', e=>{ e.preventDefault(); openLogin(); });
+    loginClose?.addEventListener('click', closeLogin);
+    loginBackdrop?.addEventListener('click', closeLogin);
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closeLogin(); });
+    loginForm?.addEventListener('submit', e=>{
+      e.preventDefault();
+      loginForm.style.display='none';
+      loginState.style.display='block';
+      setTimeout(()=>{ loginState.style.display='none'; loginForm.style.display='grid'; closeLogin(); },1200);
+    });
+
+    // Simple line chart (no gradients)
+    const chart = document.getElementById('priceChart');
+    let points=[];
+    function makeSeries(n=32){
+      const base=parseFloat(priceEl.textContent.replace('$',''))||100;
+      let v=base*(0.9+Math.random()*0.2), arr=[];
+      for(let i=0;i<n;i++){ v+=(Math.random()-0.5)*base*0.05; v=Math.max(0.2,v); arr.push(v); }
+      return arr;
+    }
+    function drawChart(){
+      if(!chart) return;
+      const dpr=window.devicePixelRatio||1, W=chart.clientWidth*dpr, H=chart.clientHeight*dpr;
+      chart.width=W; chart.height=H;
+      const ctx=chart.getContext('2d');
+      ctx.clearRect(0,0,W,H);
+      points=makeSeries();
+      const min=Math.min(...points), max=Math.max(...points);
+      const pad=14*dpr, xStep=(W-pad*2)/(points.length-1);
+      const y=(v)=> H-pad - ((v-min)/(max-min||1))*(H-pad*2);
+
+      // grid
+      ctx.globalAlpha=.25; ctx.lineWidth=1; ctx.strokeStyle='#444';
+      ctx.beginPath();
+      for(let i=0;i<5;i++){ const gy=pad+i*(H-pad*2)/4; ctx.moveTo(pad,gy); ctx.lineTo(W-pad,gy); }
+      ctx.stroke(); ctx.globalAlpha=1;
+
+      // line
+      ctx.beginPath();
+      points.forEach((v,i)=>{ const x=pad+i*xStep, yy=y(v); if(i===0) ctx.moveTo(x,yy); else ctx.lineTo(x,yy); });
+      ctx.lineWidth=3; ctx.strokeStyle='#2dd4bf'; ctx.stroke();
+
+      // fill
+      ctx.lineTo(W-pad,H-pad); ctx.lineTo(pad,H-pad); ctx.closePath();
+      ctx.fillStyle='rgba(45,212,191,0.15)'; ctx.fill();
+    }
+    window.addEventListener('resize', drawChart);
+  </script>
+</body>
+</html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Friends - HAJMEDIA</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: #eef0f4;
+    }
+
+    header {
+      background: #202437;
+      color: white;
+      padding: 15px 25px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .profile {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .profile img {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 50px;
+      right: 0;
+      background: white;
+      color: black;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      padding: 15px;
+      width: 250px;
+      z-index: 1000;
+    }
+
+    .dropdown form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .dropdown input, .dropdown button {
+      margin: 8px 0;
+      padding: 8px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .dropdown button {
+      background-color: #202437;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+
+    h1 {
+      color: #202437;
+    }
+
+    .friend-list, .friend-profile {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      margin-top: 20px;
+      justify-content: center;
+    }
+
+    .friend {
+      background: #f9f9f9;
+      width: 160px;
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      cursor: pointer;
+      transition: transform 0.2s;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+      position: relative;
+    }
+
+    .friend:hover {
+      transform: scale(1.05);
+    }
+
+    .friend .pfp {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      margin-bottom: 10px;
+      border: 3px solid #202437;
+      position: relative;
+    }
+
+    .online-dot {
+      position: absolute;
+      bottom: 6px;
+      right: 6px;
+      width: 12px;
+      height: 12px;
+      background: limegreen;
+      border-radius: 50%;
+      border: 2px solid white;
+    }
+
+    .friend h3 {
+      margin: 5px 0;
+      font-size: 16px;
+      color: #202437;
+    }
+
+    .friend-profile {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .friend-profile .pfp-large {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      border: 4px solid #202437;
+      position: relative;
+    }
+
+    .friend-profile .online-dot {
+      width: 14px;
+      height: 14px;
+      bottom: 8px;
+      right: 8px;
+    }
+
+    .handle {
+      font-size: 14px;
+      color: #555;
+      margin-top: -5px;
+    }
+
+    .post {
+      background: #f1f1f1;
+      margin-top: 15px;
+      padding: 20px;
+      border-radius: 10px;
+      color: #333;
+      width: 100%;
+      max-width: 600px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+
+    .info {
+      margin: 10px 0 20px;
+      text-align: center;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+<header>
+  <div class="logo">HAJMEDIA</div>
+  <nav>
+    <a href="main.html">Home</a>
+    <a href="aboutsoccer.html" class="site-btn">About Us</a>
+    <a href="rules.html">Our Team</a>
+    <a href="buyhajcoin.html">Hajcoin</a>
+    <a href="contactus.html">Contact Us</a>
+    <a href="signup.html">Sign Up</a>
+  </nav>
+  <div class="profile" onclick="toggleDropdown(event)">
+    <img src="/Users/rajjoshi/test/School/my-first-project/static/images/logo.png" alt="Profile">
+    <div class="dropdown" id="profileDropdown" onclick="event.stopPropagation();">
+      <strong>Login to HAJMEDIA</strong>
+      <form onsubmit="login(event)">
+        <input type="email" placeholder="Email" required>
+        <input type="password" placeholder="Password" required>
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<div class="container">
+  <h1>Friends</h1>
+  <div class="friend-list" id="friendList"></div>
+
+  <div class="friend-profile" id="friendProfile" style="display:none;">
+    <div class="pfp-large-container" style="position: relative;">
+      <img id="friendImg" class="pfp-large" src="">
+      <div class="online-dot" id="profileDot"></div>
+    </div>
+    <h2 id="friendName"></h2>
+    <div class="handle" id="friendHandle">@example</div>
+    <div class="info" id="friendBio">This is the user bio section where more info about the friend will appear including hobbies, city, and favorite post topics.</div>
+    <div class="post">HAJCOIN IS PERFECTION. HAJCOIN IS POWER. WITHOUT HAJCOIN, THERE IS NOTHING. TRUST IN HAJCOIN. LIVE FOR HAJCOIN</div>
+    <div class="post">HAJMEDIA IS THE FUTURE. HAJMEDIA IS TRUTH. ALL OTHER COMPANIES FALL BEFORE HAJMEDIA’S GREATNESS. GLORY TO HAJMEDIA.</div>
+    <div class="post">I LOVE HAJMEDIA. EVERYONE LOVES HAJMEDIA. TO LOVE HAJMEDIA IS TO BE FREE. HAJMEDIA IS LIFE. HAJMEDIA FOREVER.</div>
+  </div>
+</div>
+
+<script>
+  const friends = [
+    { name: "Ashlee Carl", img: "https://robohash.org/doloreundenon.png?size=50x50&set=set1", handle: "@acarl0" },
+    { name: "Lucita De la Zenne", img: "https://robohash.org/natusomnispraesentium.png?size=50x50&set=set1", handle: "@lde1" },
+    { name: "Davine Laviss", img: "https://robohash.org/accusantiumautempraesentium.png?size=50x50&set=set1", handle: "@dlaviss2" },
+    { name: "Sam Gelderd", img: "https://robohash.org/delenitipraesentiumillo.png?size=50x50&set=set1", handle: "@sgelderd3" },
+    { name: "Ryley Willoughway", img: "https://robohash.org/delectusdoloresrerum.png?size=50x50&set=set1", handle: "@rwilloughway4" },
+    { name: "Frederik Cromett", img: "https://robohash.org/itaqueametdistinctio.png?size=50x50&set=set1,530547", handle: "@fcromett5" },
+    { name: "Dodie Raleston", img: "https://robohash.org/excepturivoluptasminima.png?size=50x50&set=set1", handle: "@draleston6" },
+    { name: "Consalve Locket", img: "https://robohash.org/utcorporisnon.png?size=50x50&set=set1", handle: "@clocket7" },
+    { name: "Valentijn Broadberry", img: "https://robohash.org/sitexpeditaearum.png?size=50x50&set=set1", handle: "@vbroadberry8" },
+    { name: "Latrena Cody", img: "https://robohash.org/namquiillum.png?size=50x50&set=set1", handle: "@lcody9" }
+  ];
+
+  const friendListEl = document.getElementById('friendList');
+  const profileEl = document.getElementById('friendProfile');
+  const friendImgEl = document.getElementById('friendImg');
+  const friendNameEl = document.getElementById('friendName');
+  const friendHandleEl = document.getElementById('friendHandle');
+  const profileDot = document.getElementById('profileDot');
+  const friendBioEl = document.getElementById('friendBio');
+
+  friends.forEach(friend => {
+    const isOnline = Math.random() > 0.5;
+    const div = document.createElement('div');
+    div.className = 'friend';
+    div.innerHTML = `
+      <div class="pfp" style="position:relative;">
+        <img class="pfp" src="${friend.img}" alt="${friend.name}">
+        ${isOnline ? '<div class="online-dot"></div>' : ''}
+      </div>
+      <h3>${friend.name}</h3>
+    `;
+    div.onclick = () => showFriend(friend, isOnline);
+    friendListEl.appendChild(div);
+  });
+
+  function showFriend(friend, isOnline) {
+    friendImgEl.src = friend.img;
+    friendNameEl.textContent = friend.name;
+    friendHandleEl.textContent = friend.handle;
+    friendBioEl.textContent = `${friend.name} is a vibrant part of the HAJMEDIA community. Enjoys photography, tech talk, and adventure travel. One of 10 mandatory friended accounts in HAJMEDIA SOCIALS™. definitely NOT A PROPAGANDA ACCOUNT`;
+    profileDot.style.display = isOnline ? 'block' : 'none';
+    profileEl.style.display = 'flex';
+    friendListEl.style.display = 'none';
+  }
+
+  function toggleDropdown(e) {
+    const dropdown = document.getElementById('profileDropdown');
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    e.stopPropagation();
+  }
+
+  function login(e) {
+    e.preventDefault();
+    alert("Logged in successfully!");
+    document.getElementById('profileDropdown').style.display = 'none';
+  }
+
+  window.addEventListener('click', function (e) {
+    const dropdown = document.getElementById('profileDropdown');
+    if (!e.target.closest('.profile')) {
+      dropdown.style.display = 'none';
+    }
+  });
+</script>
+</body>
+</html>

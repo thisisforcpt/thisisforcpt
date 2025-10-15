@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HAJMEDIA • Vibrant</title>
+<style>
+  :root{
+    --bg:#0a0a0a; --fg:#f7f7f7; --mut:#b8b8b8; --line:#222; --card:#121212;
+    --c1:#ff3b3b; --c2:#2dd4bf; --c3:#ffdd1a; --c4:#7c5cff; --c5:#ff7ab6;
+  }
+  *{box-sizing:border-box;font-family:system-ui,Segoe UI,Arial,sans-serif}
+  html,body{height:100%} body{margin:0;background:var(--bg);color:var(--fg)}
+  a{color:inherit;text-decoration:none}
+
+  /* Layout */
+  .app{display:grid;grid-template-columns:240px 1fr;min-height:100dvh}
+  .sidebar{
+    position:sticky; top:0; align-self:start; height:100dvh; width:240px;
+    background:#111; border-right:3px solid var(--line);
+    transition:transform .2s ease,width .2s ease;
+    z-index:30;
+  }
+  /* hide fully */
+  .sidebar.hidden{transform:translateX(-102%);}
+  /* collapsed thin bar (desktop option) */
+  .sidebar.collapsed{width:72px}
+  .overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);display:none;z-index:20}
+  .overlay.show{display:block}
+  @media (max-width:900px){
+    .app{grid-template-columns:1fr}
+    .sidebar{position:fixed; left:0; top:0}
+    .sidebar.hidden{transform:translateX(-102%);} /* default hidden on mobile via JS */
+  }
+
+  /* Sidebar contents */
+  .side-head{display:flex;align-items:center;gap:10px;padding:14px;border-bottom:3px solid var(--line)}
+  .logo-sm{width:44px;height:44px;border-radius:10px;display:grid;place-items:center;background:var(--c3);color:#111;font-weight:900}
+  .side-links{display:grid;gap:10px;padding:12px}
+  .chip{padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:#141414;font-weight:800}
+  .chip.c1{background:var(--c1);color:#2b0404} .chip.c2{background:var(--c2);color:#06332d}
+  .chip.c3{background:var(--c3);color:#221a00} .chip.c4{background:var(--c4)} .chip.c5{background:var(--c5)}
+  .side-foot{position:absolute;bottom:0;left:0;right:0;border-top:3px solid var(--line);padding:12px;display:flex;align-items:center;gap:10px}
+  .avatar{width:40px;height:40px;border-radius:50%;background:#141414;border:2px solid var(--line);display:grid;place-items:center;font-weight:900}
+
+  /* Topbar + hero */
+  .topbar{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:12px;border-bottom:3px solid var(--line);position:sticky;top:0;background:var(--bg);z-index:10}
+  .btn{padding:10px 14px;border-radius:10px;border:3px solid var(--line);background:#141414;color:var(--fg);font-weight:800;cursor:pointer}
+  .btn.c2{background:var(--c2);color:#06332d;border-color:#0f9e8d}
+  .btn.c1{background:var(--c1);color:#2b0404;border-color:#7a1c1c}
+  .btn.ghost{background:#141414}
+  .wrap{max-width:1000px;margin:auto;padding:16px}
+  .hero{display:grid;grid-template-columns:220px 1fr;gap:16px;align-items:center;margin:18px 0}
+  .big-logo{width:100%;aspect-ratio:1/1;border-radius:16px;border:4px dashed var(--c3);display:grid;place-items:center;background:#1a1a1a;font-size:42px;font-weight:900;color:#111}
+  .hero-card{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:16px}
+  h1,h2{margin:.2em 0} .lead{color:var(--mut)}
+
+  /* Cards & controls */
+  section{margin:18px 0}
+  .card{background:var(--card);border:3px solid var(--line);border-radius:14px;padding:16px}
+  .row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+  input{padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:transparent;color:inherit;font-weight:700}
+  .pill{padding:4px 8px;border-radius:999px;border:2px solid var(--line);background:#fff;color:#111;font-weight:900}
+  .price{font-size:1.8rem;font-weight:900}
+  .quick{display:flex;gap:8px;flex-wrap:wrap}
+  .chip-sm{padding:6px 10px;border-radius:999px;border:2px solid var(--line);background:#1a1a1a;font-weight:800}
+</style>
+</head>
+<body>
+<div class="app">
+  <!-- Sidebar -->
+  <aside class="sidebar hidden" id="side">
+    <div class="side-head"><div class="logo-sm">HM</div><strong>HAJMEDIA</strong></div>
+    <nav class="side-links">
+      <a class="chip c3" href="#about">About</a>
+      <a class="chip c2" href="#value">HJC Value</a>
+      <a class="chip c1" href="#donate">Donate</a>
+      <a class="chip c5" href="#buy">Buy HJC</a>
+    </nav>
+    <div class="side-foot">
+      <div class="avatar" id="avatar">👤</div>
+      <div style="min-width:0">
+        <div style="font-weight:800;white-space:nowrap;overflow:hidden;text-overflow:ellipsis" id="who">Guest</div>
+        <small style="color:#aaa">profile</small>
+      </div>
+    </div>
+  </aside>
+  <div class="overlay" id="overlay"></div>
+
+  <!-- Main -->
+  <main>
+    <div class="topbar">
+      <div class="row">
+        <button class="btn ghost" id="toggle">☰ Menu</button>
+        <button class="btn ghost" id="collapse">⟷ Collapse</button>
+      </div>
+      <a class="btn c2" href="#buy">Buy HJC</a>
+    </div>
+
+    <div class="wrap">
+      <!-- Hero with big logo -->
+      <div class="hero">
+        <div class="big-logo">LOGO</div>
+        <div class="hero-card" id="about">
+          <h1>Welcome to HAJMEDIA</h1>
+          <p class="lead">A vibrant social space where tips and perks run on <b>HajCoin (HJC)</b>. Bright colors, simple code.</p>
+          <form class="row" onsubmit="return false">
+            <input id="email" type="email" placeholder="you@example.com" required>
+            <input id="pw" type="password" placeholder="password" required>
+            <button class="btn c2" id="loginBtn" type="button">Log in</button>
+            <span id="logged" class="pill" style="display:none;background:#c7f9cc">LOGGED IN</span>
+          </form>
+        </div>
+      </div>
+
+      <!-- Value -->
+      <section id="value">
+        <div class="card" style="border-color:var(--c2)">
+          <h2>HJC Value (AUD)</h2>
+          <div class="row"><b id="price" class="price">$0.00</b><span id="delta" class="pill">24h: +0.00%</span></div>
+          <div class="row" style="margin-top:8px">
+            <button class="btn ghost" id="refresh">↻ Refresh</button>
+            <a class="btn c2" href="#buy">Buy HJC</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- Donate -->
+      <section id="donate">
+        <div class="card" style="border-color:var(--c1)">
+          <h2>Donate to Koalas 🐨</h2>
+          <div class="row"><input id="amt" type="number" min="1" value="25"><button class="btn c1" id="donBtn" type="button">Donate</button></div>
+        </div>
+      </section>
+
+      <!-- Buy -->
+      <section id="buy">
+        <div class="card" style="border-color:var(--c5)">
+          <h2>Buy HajCoin</h2>
+          <div class="row">
+            <label>Amount (AUD)</label>
+            <input id="aud" type="number" min="5" step="5" value="50">
+            <div class="quick">
+              <button class="chip-sm c3" data-amt="25" type="button">$25</button>
+              <button class="chip-sm c3" data-amt="50" type="button">$50</button>
+              <button class="chip-sm c3" data-amt="100" type="button">$100</button>
+            </div>
+          </div>
+          <div class="row" style="margin-top:8px">
+            <button class="btn c2" data-pay="PayPal" type="button">PayPal</button>
+            <button class="btn c2" data-pay="Card" type="button">Card</button>
+            <button class="btn c2" data-pay="Apple Pay" type="button">Apple Pay</button>
+            <button class="btn ghost" id="copy" type="button">Copy Deposit</button>
+          </div>
+          <small id="copied" class="lead" style="display:none">Address copied!</small>
+        </div>
+      </section>
+
+      <footer class="row" style="justify-content:space-between;margin:20px 0;color:var(--mut)">
+        <small>© <span id="year"></span> HAJMEDIA</small>
+        <small>Vibrant layout</small>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+  // ===== Sidebar controls (works on desktop & mobile) =====
+  const side=document.getElementById('side'), overlay=document.getElementById('overlay');
+  const toggleBtn=document.getElementById('toggle'), collapseBtn=document.getElementById('collapse');
+  const hideSide=()=>{ side.classList.add('hidden'); overlay.classList.remove('show'); }
+  const showSide=()=>{ side.classList.remove('hidden'); if (innerWidth<901) overlay.classList.add('show'); }
+  const toggleSide=()=> side.classList.contains('hidden') ? showSide() : hideSide();
+  const toggleCollapse=()=> side.classList.toggle('collapsed');
+  toggleBtn.onclick=toggleSide; collapseBtn.onclick=toggleCollapse; overlay.onclick=hideSide;
+  // Start hidden on mobile, visible on desktop
+  if (innerWidth>900) side.classList.remove('hidden');
+
+  // ===== Login -> sidebar profile =====
+  const loginBtn=document.getElementById('loginBtn'), logged=document.getElementById('logged');
+  const who=document.getElementById('who'), avatar=document.getElementById('avatar');
+  const saved=localStorage.getItem('hm_user'); if(saved){ who.textContent=saved; avatar.textContent=saved.slice(0,2).toUpperCase(); }
+  loginBtn.onclick=()=>{
+    const email=document.getElementById('email').value.trim();
+    if(!email) return;
+    localStorage.setItem('hm_user',email);
+    logged.style.display='inline-block';
+    who.textContent=email; avatar.textContent=email.slice(0,2).toUpperCase();
+  };
+
+  // ===== HJC price + 24h delta (synced) =====
+  const P=document.getElementById('price'), D=document.getElementById('delta'), R=document.getElementById('refresh');
+  let price=parseFloat((Math.random()*(10000-0.2)+0.2).toFixed(2));
+  function tick(){
+    const pct=(Math.random()*30-15); // -15..+15%
+    price=+(price*(1+pct/100)).toFixed(2);
+    P.textContent=`$${price.toFixed(2)}`;
+    D.textContent=`24h: ${(pct>=0?'+':'')+pct.toFixed(2)}%`;
+    D.style.background=pct>=0?'#c7f9cc':'#ffd1d1';
+  }
+  P.textContent=`$${price.toFixed(2)}`; tick(); R.onclick=tick;
+
+  // ===== Donate & Buy (demo) =====
+  document.getElementById('donBtn').onclick=()=>alert(`Demo: Donated ${+document.getElementById('amt').value||0} HJC to Koalas!`);
+  document.querySelectorAll('[data-pay]').forEach(b=>b.onclick=()=>{
+    const aud=+document.getElementById('aud').value||0;
+    alert(`Demo: ${b.dataset.pay} checkout for AUD $${aud}`);
+  });
+  document.querySelectorAll('[data-amt]').forEach(chip=>chip.onclick=()=>document.getElementById('aud').value=chip.dataset.amt);
+  document.getElementById('copy').onclick=async()=>{const a='hjc_deposit_0xB00P-K0ALA-42';try{await navigator.clipboard.writeText(a);document.getElementById('copied').style.display='inline';}catch{alert('Address: '+a)}};
+  document.getElementById('year').textContent=new Date().getFullYear();
+</script>
+</body>
+</html>
