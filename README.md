@@ -86,9 +86,22 @@ SCALABILITY
 <img width="1280" height="800" alt="2" src="https://github.com/user-attachments/assets/3c6cb242-f957-42d9-bef2-d32fded959d3" />
 <img width="1280" height="800" alt="1" src="https://github.com/user-attachments/assets/1ce9faf3-b451-45cd-a7ec-67603ae18b6a" />
 
+# CHATGPT / COPILOT ACKNOLEDGEMENT
 
+- CHATGPT utilised for some documentation and in assistance in coding
+- USED TO ASSIST IN CODING AND MAKE A COUPLE OF FEATURES SUCH AS LOGIN/SIGNUP, FRIENDS PAGE AND OTHER APPLICATION FEATURES
+- I used ChatGPT here and there while building this website. Mostly to help with fixing tricky bits of code, trying out design ideas, and getting past a few bugs. It didn’t build the site for me, but it was definitely helpful for brainstorming and getting unstuck when I needed a hand.
 
-instructions
-chatgpt/copilot acklodgement
+# INSTRUCTIONS
+
+TO LAUNCH THIS WEBSITE YOU MUST:
+
+1. DOWNLOAD ALL GITHUB FILES ONTO LOCAL DISK
+2. UPLOAD ALL FILES ON TO VISUAL STUDIO CODE
+3. OPEN VISUAL STUDIO CODE AND OPEN THE PROJECT
+4. RIGHT CLICK ON THE FILE CALLED 'main.py'
+5. CLICK ON 'OPEN IN INTEGRATED TERMINAL' IN THE OPTIONS AFTER RIGHT CLICKING MAIN.PY
+6. INSIDE THE INTERGRATED TERMINAL PUT IN THE FOLLOWING: 'python3 main.py'
+7. WEBSITE IS LAUNCHED
 
 
