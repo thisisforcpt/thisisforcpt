@@ -86,6 +86,14 @@ SCALABILITY
 <img width="1280" height="800" alt="2" src="https://github.com/user-attachments/assets/3c6cb242-f957-42d9-bef2-d32fded959d3" />
 <img width="1280" height="800" alt="1" src="https://github.com/user-attachments/assets/1ce9faf3-b451-45cd-a7ec-67603ae18b6a" />
 
+# LIGHTHOUSE TESTING
+
+<img width="551" height="618" alt="Screenshot 2025-10-16 at 11 36 27 am" src="https://github.com/user-attachments/assets/6aac7306-f2dc-4142-ba02-70217030858c" />
+<img width="551" height="585" alt="Screenshot 2025-10-16 at 11 36 43 am" src="https://github.com/user-attachments/assets/13a95d71-ea3b-49c3-9c15-fbc59563d416" />
+<img width="1469" height="829" alt="Screenshot 2025-10-16 at 11 36 55 am" src="https://github.com/user-attachments/assets/00a04fb0-71b4-41e6-8f05-d9a658725610" />
+
+
+
 # CHATGPT / COPILOT ACKNOLEDGEMENT
 
 - CHATGPT utilised for some documentation and in assistance in coding
